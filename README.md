@@ -11,8 +11,11 @@ Note:
 	  * OMDIP       default ip, exported var
   * for example, set up these 2 vars in .bashrc
     
-Requires: mosh installed on client and server sides.
-  * openmosh v3.0.2 verified with mosh 1.3.2+1279-0ppa~ubuntu17.04.1.
+Requires: 
+  * mosh installed on client and server sides.
+  
+Verified:
+  * openmosh v3.0-2 verified with mosh 1.3.2+1279-0ppa~ubuntu17.04.1.
   * client: Ubuntu 17.04 zesty.
   * server: Ubuntu 16.04.2 LTS.
 
