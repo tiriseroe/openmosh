@@ -21,11 +21,10 @@ Verified:
   
 Fixed in v3.1-0:
   * cleaned up help printout
-  * added ability to connect with random mosh port (60000≤P<61000) with command line
-    specified ssh port and target IP
+  * added ability to connect with random mosh port (60000≤P<61000) with command line specified ssh port and target IP
 
 ToDo: 
   - [X] fix wrong password hang (unable to duplicate)
-  - [X] create .deb installation
+  - [ ] create .deb installation
 
 :koala:
