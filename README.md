@@ -12,15 +12,20 @@ Note:
   * for example, set up these 2 vars in .bashrc
     
 Requires: 
-  * mosh installed on client and server sides.
+  * mosh installed on "client" and "server" sides.
   
 Verified:
-  * openmosh v3.0-2 verified with mosh 1.3.2+1279-0ppa~ubuntu17.04.1.
-  * client: Ubuntu 17.04 zesty.
-  * server: Ubuntu 16.04.2 LTS.
+  * openmosh v3.1-0 verified:
+  * originating: mosh 1.3.2+1279-0ppa~ubuntu17.04.1 on Ubuntu 17.04 zesty.
+  * terminating: mosh 1.2.5-2 on Ubuntu 16.04.3 LTS xenial.
+  
+Fixed in v3.1-0:
+  * cleaned up help printout
+  * added ability to connect with random mosh port (60000≤P<61000) with command line
+    specified ssh port and target IP
 
 ToDo: 
-  - [ ] fix wrong password hang 
+  - [X] fix wrong password hang (unable to duplicate)
   - [X] create .deb installation
 
 :koala:
