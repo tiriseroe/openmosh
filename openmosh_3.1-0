@@ -14,8 +14,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 LICENSE="GNU General Public License v3.0"
-VER="3.0.2"
-DATE="(09/02/2017)"
+VER="3.1-0"
+DATE="(09/15/2017)"
 LOCALSERVERLISTFILE="/tmp/openmosh.serverports"
 CSERVERLISTFILE="/tmp/openmosh.clientportlist"
 SSERVERLISTFILE="/tmp/openmosh.serverportlist"
@@ -29,19 +29,17 @@ cat << EOE
 Version:  ${VER} ${DATE} GNU GPL v 3.0
 
 Usage:    ${BASENAME} SSH_PORT IP_ADDRESS MOSH_PORT
-          ${BASENAME} -c [SSH_PORT IP_ADDRESS]
-          ${BASENAME} -k [SSH_PORT IP_ADDRESS]
-          ${BASENAME} -r
-          ${BASENAME} -p
-          ${BASENAME} -h
+          ${BASENAME} { -c | -k | -r } [SSH_PORT IP_ADDRESS]
+          ${BASENAME} { -p | -h }
 
-Notes:    -c          report ALL server connections
-          -k          kill ALL server connection
+Notes:    -c          report ALL current server connections
+          -k          kill ALL current server connections
 	  -r          connect default settings, random mosh port 60000≤P<61000
 	  -p          print environment variables, if set
           -h          print usage
 	  OMDSPORT    default ssh port, exported var
 	  OMDIP       default ip, exported var
+          Requires mosh installed on both ends
 EOE
 }
 
@@ -120,7 +118,33 @@ case "$#" in
               SPORT=${OMDSPORT}
               IP=${OMDIP}
               sudo ssh -p ${SPORT} user@${IP} "pkill mosh" 
-         ;;
+              ;;
+         "-r")
+              SPORT=${2}
+              IP=${3}
+              MPORT=${RANDMPORT}
+              MKEY=$(sudo ssh -p ${SPORT} user@${IP} "mosh-server -p ${MPORT}" \
+                  2>/dev/null | grep "MOSH CONNECT" | awk '{print $4}')
+              if [ -z ${MKEY} ]; then
+                  echo "Mosh key retrieval failed. Port may be in use already."
+                  exit 101
+              else
+                  MOSH_KEY=${MKEY} mosh-client ${IP} ${MPORT}
+              fi
+   	      ;;
+         *)
+              SPORT=${1}
+              IP=${2}
+              MPORT=${3}
+              MKEY=$(sudo ssh -p ${SPORT} user@${IP} "mosh-server -p ${MPORT}" \
+                  2>/dev/null | grep "MOSH CONNECT" | awk '{print $4}')
+              if [ -z ${MKEY} ]; then
+                  echo "Mosh key retrieval failed. Port may be in use already."
+                  exit 101
+              else
+                  MOSH_KEY=${MKEY} mosh-client ${IP} ${MPORT}
+              fi
+              ;;
       esac
       ;;
    *)
