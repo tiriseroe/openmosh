@@ -1,0 +1,40 @@
+How to make a simple .deb package
+=================================
+https://ubuntuforums.org/showthread.php?t=910717
+
+control file sample:
+====================
+Package: openmosh
+Version: 3.0-2
+Date: Sat, 02 Sep 2017 16:39:00 -0500
+Architecture: all
+Maintainer: Tiris Eroe <tiriseroe@gmail.com>
+Depends: bash (>= 4.3)
+Installed-Size: 5
+Homepage: https://github.com/tiriseroe/openmosh
+Description: Bash script to handle mosh commands
+ Openmosh simplifies the mosh commands that handle simple connections.
+ It can optionally utilize previously set/exported IP and port variables.
+
+~/packages/openmosh$ find openmosh_3.0-2/ 
+openmosh_3.0-2/
+openmosh_3.0-2/usr
+openmosh_3.0-2/usr/local
+openmosh_3.0-2/usr/local/bin
+openmosh_3.0-2/usr/local/bin/openmosh
+openmosh_3.0-2/usr/local/bin/om
+openmosh_3.0-2/usr/local/bin/openmosh_3.0-2
+openmosh_3.0-2/DEBIAN
+openmosh_3.0-2/DEBIAN/control
+
+.
+├── openmosh_3.0-2
+│   ├── DEBIAN
+│   │   └── control
+│   └── usr
+│       └── local
+│           └── bin
+│               ├── om -> ./openmosh
+│               ├── openmosh -> ./openmosh_3.0-2
+│               └── openmosh_3.0-2
+├── openmosh_3.0-2.deb
