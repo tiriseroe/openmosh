@@ -22,9 +22,14 @@ Verified:
 Fixed in v3.1-0:
   * cleaned up help printout
   * added ability to connect with random mosh port (60000≤P<61000) with command line specified ssh port and target IP
+  
+Fixed in v3.2-0:
+  * added dependency for mosh
+  * added md5sum
+  * created .deb
 
 ToDo: 
   - [X] fix wrong password hang (unable to duplicate)
-  - [ ] create .deb installation
+  - [X] create deb installation file
 
 :koala:
