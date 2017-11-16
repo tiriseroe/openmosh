@@ -1,0 +1,12 @@
+Package: openmosh
+Version: 3.2-0
+Date: Wed, 15 Nov 2017 23:40:52 -0600
+Architecture: all
+Maintainer: Total Tuning <totalpctuning@gmail.com>
+Depends: bash (>= 4.3), mosh
+Installed-Size: 5
+Homepage: https://github.com/tiriseroe/openmosh
+Description: Bash script to handle mosh commands
+ Openmosh simplifies the mosh commands that handle simple connections.
+ It can optionally utilize previously set/exported IP and port variables.
+
